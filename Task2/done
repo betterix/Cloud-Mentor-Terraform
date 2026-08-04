@@ -1,0 +1,2 @@
+need to store ssh key:
+export TF_VAR_ssh_key="YOUR_PUBLIC_SSH_KEY_STRING"

@@ -4,3 +4,5 @@
 .tfstate*
 .terraform.tfstate.lock.info
 crash.log
+id_rsa
+id_rsa.pub
