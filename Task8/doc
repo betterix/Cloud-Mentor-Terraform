@@ -1,0 +1,6 @@
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_template
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_attachment
