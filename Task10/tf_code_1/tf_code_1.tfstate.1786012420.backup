@@ -1,0 +1,41 @@
+{
+  "version": 4,
+  "terraform_version": "1.15.8",
+  "serial": 3,
+  "lineage": "f9dad977-2622-21b1-a9b9-500e6eb75575",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "custom_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::418295704082:policy/resource-move-demo-policy",
+            "attachment_count": 0,
+            "delay_after_policy_creation_in_ms": null,
+            "description": "Custom role with limited permissions",
+            "id": "arn:aws:iam::418295704082:policy/resource-move-demo-policy",
+            "name": "resource-move-demo-policy",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"ec2:*\",\"s3:*\"],\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAWCZC55IJLX3H4TKSJ",
+            "tags": {},
+            "tags_all": {}
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "arn": "arn:aws:iam::418295704082:policy/resource-move-demo-policy"
+          },
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjAifQ=="
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
