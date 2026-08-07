@@ -1,5 +1,5 @@
 resource "aws_lb" "applb" {
-  name               = "cmtr-ook9q7ho-lb"
+  name               = var.lb_name
   load_balancer_type = "application"
 
   security_groups = [
@@ -40,7 +40,7 @@ resource "aws_lb_listener" "applt" {
 }
 
 resource "aws_lb_target_group" "blue_tg" {
-  name     = "cmtr-ook9q7ho-blue-tg"
+  name     = var.blue_target
   port     = 80
   protocol = "HTTP"
   vpc_id   = data.aws_vpc.vpc.id
@@ -56,7 +56,7 @@ resource "aws_lb_target_group" "blue_tg" {
 }
 
 resource "aws_lb_target_group" "green_tg" {
-  name     = "cmtr-ook9q7ho-green-tg"
+  name     = var.green_target
   port     = 80
   protocol = "HTTP"
   vpc_id   = data.aws_vpc.vpc.id
@@ -72,7 +72,7 @@ resource "aws_lb_target_group" "green_tg" {
 }
 
 resource "aws_launch_template" "blue_template" {
-  name          = "cmtr-ook9q7ho-blue-template"
+  name          = var.blue_template
   image_id      = "ami-02c25106ee38f6087"
   instance_type = "t2.micro"
 
@@ -100,7 +100,7 @@ resource "aws_launch_template" "blue_template" {
 }
 
 resource "aws_launch_template" "green_template" {
-  name          = "cmtr-ook9q7ho-green-template"
+  name          = var.green_template
   image_id      = "ami-02c25106ee38f6087"
   instance_type = "t2.micro"
 
@@ -128,7 +128,7 @@ resource "aws_launch_template" "green_template" {
 }
 
 resource "aws_autoscaling_group" "blue_asg" {
-  name = "cmtr-ook9q7ho-blue-asg"
+  name = var.blue_asg
 
   desired_capacity = 2
   min_size         = 1
@@ -158,7 +158,7 @@ resource "aws_autoscaling_group" "blue_asg" {
 }
 
 resource "aws_autoscaling_group" "green_asg" {
-  name = "cmtr-ook9q7ho-green-asg"
+  name = var.green_asg
 
   desired_capacity = 2
   min_size         = 1
