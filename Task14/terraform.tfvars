@@ -39,3 +39,5 @@ asg_name = "cmtr-ook9q7ho-asg"
 applb_name = "cmtr-ook9q7ho-lb"
 
 target_group_name = "cmtr-ook9q7ho-tg"
+
+role_name = "cmtr-ook9q7ho-role"

@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ec2_role" {
-  name = "cmtr-ook9q7ho-role"
+  name = var.role_name
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -21,7 +21,7 @@ resource "aws_iam_role_policy_attachment" "ssm_core" {
 }
 
 resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "cmtr-ook9q7ho-role-profile"
+  name = "${var.role_name}-profile"
   role = aws_iam_role.ec2_role.name
 }
 
@@ -30,16 +30,20 @@ resource "aws_launch_template" "template" {
   image_id      = "ami-02c25106ee38f6087"
   instance_type = "t3.micro"
 
+  depends_on = [
+    aws_iam_role_policy_attachment.ssm_core
+  ]
+
   network_interfaces {
     delete_on_termination = true
     security_groups = [
       var.ssh_sg_id,
-      var.public_http_sg_id
+      var.private_http_sg_id
     ]
   }
 
   iam_instance_profile {
-    name = "cmtr-ook9q7ho-instance_profile"
+    name = aws_iam_instance_profile.ec2_profile.name
   }
 
   metadata_options {
@@ -52,7 +56,10 @@ resource "aws_launch_template" "template" {
 
     yum update -y
     yum install httpd -y
+    yum install -y amazon-ssm-agent
 
+    systemctl enable amazon-ssm-agent
+    systemctl start amazon-ssm-agent
     systemctl start httpd
     systemctl enable httpd
 
@@ -73,6 +80,8 @@ resource "aws_autoscaling_group" "asg" {
   max_size         = 2
 
   vpc_zone_identifier = var.subnet_ids
+
+  force_delete = true
 
   launch_template {
     id      = aws_launch_template.template.id
@@ -122,5 +131,5 @@ resource "aws_lb_listener" "applt" {
 
 resource "aws_autoscaling_attachment" "appasg_attachment" {
   autoscaling_group_name = aws_autoscaling_group.asg.name
-  lb_target_group_arn    = aws_lb.applb.arn
+  lb_target_group_arn    = aws_lb_target_group.alb_tg.arn
 }

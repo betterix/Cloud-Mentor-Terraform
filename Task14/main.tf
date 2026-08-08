@@ -25,6 +25,7 @@ module "application" {
   asg_name          = var.asg_name
   applb_name        = var.applb_name
   target_group_name = var.target_group_name
+  role_name         = var.role_name
 
   vpc_id             = module.network.vpc_id
   subnet_ids         = module.network.subnet_ids

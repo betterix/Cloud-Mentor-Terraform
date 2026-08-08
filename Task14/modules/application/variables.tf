@@ -43,3 +43,8 @@ variable "private_http_sg_id" {
   type        = string
   description = "ID of the private HTTP security group"
 }
+
+variable "role_name" {
+  type        = string
+  description = "IAM role name for SSM access"
+}

@@ -71,3 +71,8 @@ variable "target_group_name" {
   type        = string
   description = "Target group name"
 }
+
+variable "role_name" {
+  type        = string
+  description = "IAM role name for SSM access"
+}
